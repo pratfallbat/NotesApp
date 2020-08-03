@@ -1,7 +1,20 @@
-<p>
+<!-- <p>
   server works with status {{getstatus()}}!
 </p>
-<button class="btn btn-primary" [disabled]="!status">Hello</button>
-<p [innerText]="status">//only hod evaluation not string interpolation
+<button class="btn btn-primary" [disabled]="!allowNewServer">Hello</button>
+<p [innerText]="allowNewServer">
+  //only hod evaluation not string interpolation
   
-</p>
+</p> -->
+
+<label>Server Name</label>
+<input type="text" class="form-control"
+ (input)="onUpdateServerName($event)">
+ <p>{{serverName}}</p>
+<button (click)="createServer()" class="btn btn-primary" [disabled]="allowNewServer">Add Server</button>
+<p>{{csv}}</p>
+<p>Component is also  a directive.one we add a component tag into our html we are bascially tellin g to add it with ts logic  </p>
+
+<input type="text" class="form-control"
+[(ngModel)]="serverName" 
+>
