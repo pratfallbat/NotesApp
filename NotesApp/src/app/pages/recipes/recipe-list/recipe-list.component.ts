@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output,EventEmitter, ɵConsole } from '@angular/core';
 import { Recipe } from '../recipe.model';
+import { RecipeServiceService } from 'src/app/services/recipe-service.service';
+// import { EventEmitter } from 'protractor';
 
 @Component({
   selector: 'app-recipe-list',
@@ -8,15 +10,17 @@ import { Recipe } from '../recipe.model';
 })
 export class RecipeListComponent implements OnInit {
 
-  recipes: Recipe[]=[
-    new Recipe('Chiken and Rice dinner','Non Veg','https://www.cscassets.com/recipes/wide_cknew/wide_32.jpg'),
-    new Recipe('Pizza','Veg','https://food.fnr.sndimg.com/content/dam/images/food/fullset/2019/8/6/0/WU2301_Four-Cheese-Pepperoni-Pizzadilla_s4x3.jpg.rend.hgtvcom.826.620.suffix/1565115622965.jpeg')
-
-  ];
-
-  constructor() { }
+ 
+ 
+ recipes:Recipe[];
+  constructor(private recipeService: RecipeServiceService) { }
 
   ngOnInit() {
+    this.recipes=this.recipeService.getRecipes();
   }
+  // onRecipeSelected(recipe: Recipe){
+  //   // console.log('YAY'+recipe.name)
+  //   this.recipeWasSelected.emit(recipe);
+  // } 
 
 }
