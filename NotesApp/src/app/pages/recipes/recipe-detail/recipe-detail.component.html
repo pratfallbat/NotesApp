@@ -8,6 +8,21 @@
     <h1> {{res.name}}</h1>
   </div>
 </div>
+<div class="row">
+  <div class="col-xs-12">
+    <!-- <div class="btn-group open ">   -->
+      <!--  open is doing it now attach it usinjg directicve-->
+      <div class="btn-group " appDropDown>  
+ 
+      <button type="button" class="btn btn-primary dropdown-toggle">Manage Recipe <span class="caret"></span></button>
+      <ul class="dropdown-menu">
+        <li><a  (click)="onAddToShoppingList()" style="cursor: pointer;">Add Ingredients to Shopping List</a></li>
+        <li><a (click)="onEditRecipe()" style="cursor: pointer;">Edit Recipe</a></li>
+        <li><a style="cursor: pointer;">Delete Recipe</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
 
 <div class="row">
   <div class="col-xs-12">
@@ -16,6 +31,12 @@
 </div>
 <div class="row">
   <div class="col-xs-12">
-    Ingredients
+    <ul class="list-group">
+      <li
+        class="list-group-item"
+        *ngFor="let ingredient of res.ingredients">
+        {{ ingredient.name }} - {{ ingredient.amount }}
+      </li>
+    </ul>
   </div>
 </div>
