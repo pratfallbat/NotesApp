@@ -64,4 +64,10 @@ onEditRecipe(){
   
 
 }
+
+
+onDeleteRecipe(){
+  this.recipSrv.deleteRecipe(this.id);
+  this.router.navigate(['/recipes'])
+}
 }

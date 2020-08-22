@@ -6,18 +6,17 @@ import { from } from 'rxjs';
 @Component({
   selector: 'app-recipes',
   templateUrl: './recipes.component.html',
-  styleUrls: ['./recipes.component.css'],
-  providers: [RecipeServiceService]
+  styleUrls: ['./recipes.component.css']
 })
 export class RecipesComponent implements OnInit {
 recipesReceived: Recipe;
 
-  constructor(private recipeSrv:RecipeServiceService) { }
-
+  // constructor(private recipeSrv:RecipeServiceService) { }
+  constructor(){}
   ngOnInit() {
-    this.recipeSrv.recipeSelected.subscribe((recipe:Recipe)=>{
-      this.recipesReceived=recipe;
-    })
+    // this.recipeSrv.recipeSelected.subscribe((recipe:Recipe)=>{
+    //   this.recipesReceived=recipe;
+    // })
   }
 
 // with service we dont need the chain of eventemitter from child to parent;

@@ -3,11 +3,13 @@ import { Recipe } from '../pages/recipes/recipe.model';
 import {  } from 'protractor';
 import { Ingredient } from '../shared/ingredient.model';
 import { ShoppingListService } from './shopping-list.service';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RecipeServiceService {
+recipesChanged=new Subject<Recipe[]>();
 
 private  recipes: Recipe[]=[
     new Recipe('Chiken and Rice dinner','Non Veg','https://www.cscassets.com/recipes/wide_cknew/wide_32.jpg',[new Ingredient('Meat',1),
@@ -40,7 +42,7 @@ private  recipes: Recipe[]=[
   ];
 
   constructor(private sl:ShoppingListService) { }
-  recipeSelected=new EventEmitter<Recipe>();
+  // recipeSelected=new EventEmitter<Recipe>();
 
   getRecipes(){
   return this.recipes.slice();
@@ -51,6 +53,23 @@ getRecipe(index:number){
 
 addIngredientsToShoppingList(ingredients:Ingredient[]){
   this.sl.addIngredients(ingredients);
+}
+
+
+addRecipe(recipe:Recipe){
+  this.recipes.push(recipe);
+  this.recipesChanged.next(this.recipes.slice());
+}
+updateRecipe(index:number,newRecipe:Recipe){
+this.recipes[index]=newRecipe;
+this.recipesChanged.next(this.recipes.slice());
+
+}
+deleteRecipe(index:number){
+  this.recipes.splice(index,1);
+  this.recipesChanged.next(this.recipes.slice());
+
+  
 }
 
 }
