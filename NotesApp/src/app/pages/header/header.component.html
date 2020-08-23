@@ -22,11 +22,18 @@ routerLinkActive="active"
 </ul>
 <ul class="nav navbar-nav navbar-right">
 
+<ng-template [ngIf]="!auth.isAuthenticated()">
+  <li><a routerLink="/signup">Register</a></li>
+  <li><a routerLink="/signin">Sign In</a></li>
+</ng-template>
+<li><a style="cursor: pointer;"
+   (click)="onLogOut()"  routerLink="/signin"
+   *ngIf="auth.isAuthenticated()">Sign Out</a></li>
 <li class="dropdown" appDropDown>
   <a style="cursor: pointer;" class="dropdown-toggle" role="buttton">Manage <span class="caret"></span> </a>
   <ul class="dropdown-menu">
-    <li><a style="cursor: pointer;">Save data</a></li>
-    <li><a style="cursor: pointer;">Fetch data</a></li> 
+    <li><a style="cursor: pointer;" (click)="onSaveData()">Save data</a></li>
+    <li><a style="cursor: pointer;" (click)="onFetchData()">Fetch data</a></li> 
   </ul>
 </li>  
   </ul>
