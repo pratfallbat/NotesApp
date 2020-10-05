@@ -28,6 +28,8 @@ import { AuthService } from './services/auth.service';
 import { DataStorageService } from './pages/shared/data-storage.service';
 import { HttpModule } from '@angular/http';
 import { AuthguardService } from './services/authguard.service';
+import { HomepageComponent } from './pages/homepage/homepage.component';
+import { SignupnewComponent } from './pages/signupnew/signupnew.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,7 +49,9 @@ import { AuthguardService } from './services/authguard.service';
     RecipeeditComponent,
     ExtraditComponent,
     SignupComponent,
-    SigninComponent
+    SigninComponent,
+    HomepageComponent,
+    SignupnewComponent
     
   ],
   imports: [

@@ -1,0 +1,36 @@
+.navbar-default {
+  background-color: #333;
+}
+.navbar-nav > li > a {
+  font: 300;
+  font-size: 1.5rem;
+  animation: all 5.6s fade-in;
+  color: white;
+}
+.navbar-nav > li.active > a {
+  font: bold;
+  font-size: 2rem;
+  background-color: rgb(87, 85, 85);
+  color: white;
+}
+
+.navbar-nav > li:hover {
+  background-color: rgb(213, 220, 223, 0.5);
+  animation: all 5.6s fade-in;
+}
+.navbar-new {
+  min-height: 7rem;
+  margin-bottom: 0;
+  border: none;
+}
+.navbar-header-t-margin,
+.navbar-nav-t-margin,
+.navbar-right-t-margin {
+  margin-top: 10px;
+  padding: 10px;
+}
+
+.navbar-right-t-margin > li > a {
+  font: 300;
+  font-size: 1.5rem;
+}

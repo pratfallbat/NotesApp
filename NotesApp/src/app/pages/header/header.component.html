@@ -1,43 +1,71 @@
-<nav class="navbar navbar-default">
-<div class="container-fluid">
-  <div class="navbar-header">
-    <a  class="navbar-brand">Recipe Book</a>
+<nav class="navbar navbar-default navbar-new">
+  <!-- <div class="container-fluid"> -->
+
+  <div class="navbar-header navbar-header-t-margin">
+    <a class="navbar-brand">Recipe Book</a>
   </div>
   <div class="collapse navbar-collapse">
-<ul class="nav navbar-nav">
+    <ul class="nav navbar-nav navbar-nav-t-margin">
+      <li
+        role="presentation"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <a *ngIf="auth.isAuthenticated()" routerLink="/recipes">Recipe</a>
+      </li>
 
-<li role="presentation"
-routerLinkActive="active"
-[routerLinkActiveOptions]="{exact: true}"><a  *ngIf="auth.isAuthenticated()" routerLink="/recipes">Recipe</a>
-</li>
-<li role="presentation"
-routerLinkActive="active"
-><a  *ngIf="auth.isAuthenticated()" routerLink="/shopping-list">shopping-list</a>
-</li>
+      <li role="presentation" routerLinkActive="active">
+        <a *ngIf="auth.isAuthenticated()" routerLink="/shopping-list"
+          >shopping-list</a
+        >
+      </li>
 
-<!-- <li><a href="#" (click)="onSelect('recipe')">Recipes</a></li>
-<li><a href="#" (click)="onSelect('shopping-list')">Shopping List</a></li> -->
-<!-- old way of doing before routing -->
+      <li role="presentation" routerLinkActive="active">
+        <a routerLink="/home">Home</a>
+      </li>
 
-</ul>
-<ul class="nav navbar-nav navbar-right">
-
-<ng-template [ngIf]="!auth.isAuthenticated()">
-  <li><a routerLink="/signup">Register</a></li>
-  <li><a routerLink="/signin">Sign In</a></li>
-</ng-template>
-<li><a style="cursor: pointer;"
-   (click)="onLogOut()"  routerLink="/signin"
-   *ngIf="auth.isAuthenticated()">Sign Out</a></li>
-<li class="dropdown" appDropDown>
-  <a style="cursor: pointer;"  *ngIf="auth.isAuthenticated()" class="dropdown-toggle" role="buttton">Manage <span class="caret"></span> </a>
-  <ul class="dropdown-menu">
-    <li><a style="cursor: pointer;" (click)="onSaveData()">Save data</a></li>
-    <li><a style="cursor: pointer;" (click)="onFetchData()">Fetch data</a></li> 
-  </ul>
-</li>  
-  </ul>
-
+      <!-- <li><a href="#" (click)="onSelect('recipe')">Recipes</a></li>
+            <li><a href="#" (click)="onSelect('shopping-list')">Shopping List</a></li> -->
+      <!-- old way of doing before routing -->
+    </ul>
+    <ul class="nav navbar-nav navbar-right navbar-right-t-margin">
+      <ng-template [ngIf]="!auth.isAuthenticated()">
+        <li role="presentation" routerLinkActive="active">
+          <a routerLink="/signup">Register</a>
+        </li>
+        <li role="presentation" routerLinkActive="active">
+          <a routerLink="/signin">Sign In</a>
+        </li>
+      </ng-template>
+      <li>
+        <a
+          style="cursor: pointer"
+          (click)="onLogOut()"
+          routerLink="/signin"
+          *ngIf="auth.isAuthenticated()"
+          >Sign Out</a
+        >
+      </li>
+      <li class="dropdown" appDropDown="appDropDown">
+        <a
+          style="cursor: pointer"
+          *ngIf="auth.isAuthenticated()"
+          class="dropdown-toggle"
+          role="buttton"
+          >Manage
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li>
+            <a style="cursor: pointer" (click)="onSaveData()">Save data</a>
+          </li>
+          <li>
+            <a style="cursor: pointer" (click)="onFetchData()">Fetch data</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
   </div>
-</div>
+
+  <!-- </div> -->
 </nav>

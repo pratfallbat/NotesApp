@@ -1,0 +1,22 @@
+.content {
+  /* min-height: calc(100vh - 70px); */
+  min-height: calc(100vh - 301px);
+  flex: 1 0 auto;
+}
+/* .footer { */
+/* margin-top: 1rem; */
+/* height: 50px; */
+/* flex-shrink: 0; */
+/* background-color: crimson; */
+/* color: antiquewhite; */
+/* } */
+
+.footer {
+  /* margin-top: 1rem; */
+  flex-shrink: 0;
+  /* position: sticky; */
+  bottom: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+}

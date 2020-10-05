@@ -1,0 +1,6 @@
+div > .new {
+  height: 400rem;
+  display: block;
+  width: auto;
+  background-color: chartreuse;
+}

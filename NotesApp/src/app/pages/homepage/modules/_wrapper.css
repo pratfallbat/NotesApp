@@ -1,0 +1,50 @@
+.wrapper {
+  /* background-color: violet; */
+  /* also uncomment yellow backgroundf on row.css */
+  /* uncomment above line just to see why we used overflow */
+  overflow: hidden;
+  /* uncomment it to know the differnce */
+  /* so that div of row below can shift a bit to right side without disturbing anyone and it could bbe maximize */
+  padding-left: 18px;
+  padding-right: 18px;
+  max-width: 1236px;
+  margin-left: auto;
+  margin-right: auto;
+
+  &--medium {
+    max-width: 976px;
+  }
+  &--narrow {
+    max-width: 470px;
+  }
+
+  &--no-padding-until-medium {
+    padding-left: 0;
+    padding-right: 0;
+    @media (min-width: 540px) {
+      padding-left: 18px;
+      padding-right: 18px;
+    }
+  }
+
+  &--no-padding-until-large {
+    padding-left: 0;
+    padding-right: 0;
+    @media (min-width: 1010px) {
+      padding-left: 18px;
+      padding-right: 18px;
+    }
+  }
+
+  .wrapper {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  &--b-margin {
+    /* 62px margin is needed-62/16=3.875 */
+    margin-bottom: 1rem;
+    @media (min-width: 540px) {
+      margin-bottom: 3.875rem;
+    }
+  }
+}
