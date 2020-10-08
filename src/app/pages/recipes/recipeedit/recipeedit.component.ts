@@ -3,8 +3,8 @@ import { Params, Router, ActivatedRoute } from "@angular/router";
 import { RecipeServiceService } from "src/app/services/recipe-service.service";
 import { FormGroup, FormControl, FormArray, Validators } from "@angular/forms";
 import { Recipe } from "../recipe.model";
-import { Ingredient } from "src/app/shared/ingredient.model";
-import { relative } from "path";
+// import { Ingredient } from "src/app/shared/ingredient.model";
+// import { relative } from "path";
 
 @Component({
   selector: "app-recipeedit",

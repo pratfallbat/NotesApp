@@ -33,6 +33,8 @@ import { SignupnewComponent } from "./pages/signupnew/signupnew.component";
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { AuthInterceptor } from "./pages/shared/auth-inteceptor";
 import { LoggingInterceptor } from "./pages/shared/response inteceptor/loggingInterceptor";
+import { StoreModule } from "@ngrx/store";
+import { shopplingListReducer } from "./pages/shopping-list/store/shopping-list-reducer";
 @NgModule({
   declarations: [
     AppComponent,
@@ -63,10 +65,11 @@ import { LoggingInterceptor } from "./pages/shared/response inteceptor/loggingIn
     ReactiveFormsModule,
     HttpModule,
     HttpClientModule,
+    StoreModule.forRoot({ shoppingList: shopplingListReducer }),
   ],
   providers: [
     DataStorageService,
-    ShoppingListService,
+    // ShoppingListService,
     RecipeServiceService,
     AuthService,
     AuthguardService,
