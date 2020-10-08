@@ -42,7 +42,7 @@ export class DataStorageService {
       this.recipeService.getRecipes(),
       {
         reportProgress: true,
-        params: new HttpParams().set("auth", token),
+        // params: new HttpParams().set("auth", token),
       }
     );
     return this.httpClient.request(req);

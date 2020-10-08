@@ -30,7 +30,9 @@ import { HttpModule } from "@angular/http";
 import { AuthguardService } from "./services/authguard.service";
 import { HomepageComponent } from "./pages/homepage/homepage.component";
 import { SignupnewComponent } from "./pages/signupnew/signupnew.component";
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
+import { AuthInterceptor } from "./pages/shared/auth-inteceptor";
+import { LoggingInterceptor } from "./pages/shared/response inteceptor/loggingInterceptor";
 @NgModule({
   declarations: [
     AppComponent,
@@ -68,6 +70,8 @@ import { HttpClientModule } from "@angular/common/http";
     RecipeServiceService,
     AuthService,
     AuthguardService,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: LoggingInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
 })
