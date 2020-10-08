@@ -7,6 +7,7 @@ import {
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 // import "rxjs/add/operator/do";
+import { tap } from "rxjs/operators";
 
 import { AuthService } from "src/app/services/auth.service";
 
@@ -17,9 +18,17 @@ export class LoggingInterceptor implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    return null;
-    //   return next.handle(req).do((event) => {
-    //   console.log("Logging Interceptor", event);
-    // });
+    // return null;
+    //   using in place of do
+    return next.handle(req).pipe(
+      tap(
+        (event) => {
+          console.log("Logging interceptor", event);
+        },
+        (err: any) => {
+          console.log("tap error");
+        }
+      )
+    );
   }
 }
