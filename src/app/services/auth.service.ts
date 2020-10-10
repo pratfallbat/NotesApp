@@ -1,52 +1,54 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import * as firebase from 'firebase';
 import { Router } from '@angular/router';
-@Injectable({
-  providedIn: 'root'
-})
+import * as fromApp from '../store/app.reducer';
+import * as AuthActions from './store-auth/auth.action'
+import { Store } from '@ngrx/store';
+@Injectable({providedIn: 'root'})
 export class AuthService {
-  token:string;
   
 
-  signUpUser(email:string,password:string){
-firebase.auth().createUserWithEmailAndPassword(email,password)
-.catch(
-error=>  console.error(error)
-  
-)
-  }
+  constructor(private router : Router, private store: Store<fromApp.AppState>) {}
 
 
-  signInUser(email:string,password:string){
-    firebase.auth().signInWithEmailAndPassword(email,password)
-    .then(response=>{
-        this.router.navigate(['/']);
+    signUpUser(email : string, password : string) {
+      firebase.auth().createUserWithEmailAndPassword(email, password).
+        then(user => {
+          this.store.dispatch(new AuthActions.Signup())
+
           firebase.auth().currentUser.getIdToken()
-                .then(
-                  (token: string)=> this.token=token
-                )  
-          console.log('token saved :   '+this.token)
-          console.log(response);
+            .then((token: string) => {
+              console.log('tpken receiverd')
+              console.log(token)
+            this.store.dispatch(new AuthActions.SetToken(token));
+          }) 
+
         })
-    .catch(error=> console.log(error))
-  }
+        .catch(error => console.error(error))
+    }
 
-  getToken(){
-    firebase.auth().currentUser.getIdToken()
-    .then(
-      (token: string)=> this.token=token
-    )  
-     return this.token;
-  }
 
-  isAuthenticated(){
-    return this.token!=null;
-  }
+    signInUser(email : string, password : string) {
+      firebase.auth().signInWithEmailAndPassword(email, password)
+        .then(response => {
 
-  logout(){
-    firebase.auth().signOut();
-    this.token=null;
-  }
-  constructor(private router:Router) { }
+          this.store.dispatch(new AuthActions.Signin());
+
+            this.router.navigate(['/']);
+          firebase.auth().currentUser.getIdToken()
+            .then((token: string) => {
+              this.store.dispatch(new AuthActions.SetToken(token));
+            }) 
+           
+        }).catch(error => console.log(error))
+    }
+
+
+
+    logout() {
+        firebase.auth().signOut();
+        this.store.dispatch(new AuthActions.Logout());
+    }
+
 
 }

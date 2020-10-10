@@ -34,7 +34,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { AuthInterceptor } from "./pages/shared/auth-inteceptor";
 import { LoggingInterceptor } from "./pages/shared/response inteceptor/loggingInterceptor";
 import { StoreModule } from "@ngrx/store";
-import { shopplingListReducer } from "./pages/shopping-list/store/shopping-list-reducer";
+
+import { reducers } from './store/app.reducer';
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,16 +44,11 @@ import { shopplingListReducer } from "./pages/shopping-list/store/shopping-list-
     HeaderComponent,
     FooterComponent,
     SidebarComponent,
-    RecipesComponent,
-    RecipeListComponent,
-    RecipeDetailComponent,
-    RecipeItemComponent,
     ShoppingListComponent,
     ShoppingEditComponent,
     DropDownDirective,
-    RecipeStartComponent,
-    RecipeeditComponent,
-    ExtraditComponent,
+    
+     ExtraditComponent,
     SignupComponent,
     SigninComponent,
     HomepageComponent,
@@ -65,11 +61,10 @@ import { shopplingListReducer } from "./pages/shopping-list/store/shopping-list-
     ReactiveFormsModule,
     HttpModule,
     HttpClientModule,
-    StoreModule.forRoot({ shoppingList: shopplingListReducer }),
+    StoreModule.forRoot(reducers),
   ],
   providers: [
     DataStorageService,
-    // ShoppingListService,
     RecipeServiceService,
     AuthService,
     AuthguardService,

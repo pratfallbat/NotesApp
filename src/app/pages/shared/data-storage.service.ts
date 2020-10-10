@@ -20,7 +20,7 @@ export class DataStorageService {
   ) {}
 
   storeRecipes() {
-    const token = this.authService.getToken();
+ 
     const headers = new HttpHeaders()
       .set("Authorization", "Bearer  afka")
       .append("asdasd", "acddascas");
@@ -51,11 +51,11 @@ export class DataStorageService {
   }
 
   getRecipes() {
-    const token = this.authService.getToken();
+    // const token = this.authService.getToken();
 
     this.httpClient
       .get<Recipe[]>(
-        "https://recipecustom.firebaseio.com/recipes.json?auth=" + token,
+        "https://recipecustom.firebaseio.com/recipes.json" ,
         {
           observe: "body",
           responseType: "json",

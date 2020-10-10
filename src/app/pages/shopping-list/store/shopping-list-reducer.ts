@@ -2,9 +2,7 @@ import { Ingredient } from "src/app/shared/ingredient.model";
 import * as ShoppingListActions from "./shopping-list.action";
 
 export const ADD_INGREDIENT = "ADD_INGREDIENT";
-export interface AppState {
-  shoppingList: State;
-}
+
 export interface State {
   ingredients: Ingredient[];
   editedIngredient: Ingredient;

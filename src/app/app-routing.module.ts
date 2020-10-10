@@ -1,5 +1,5 @@
 import { NgModule } from "@angular/core";
-import { Routes, RouterModule } from "@angular/router";
+import { Routes, RouterModule, PreloadAllModules } from "@angular/router";
 import { RecipesComponent } from "./pages/recipes/recipes.component";
 import { ShoppingListComponent } from "./pages/shopping-list/shopping-list.component";
 import { RecipeStartComponent } from "./pages/recipes/recipe-start/recipe-start.component";
@@ -14,33 +14,7 @@ import { SignupComponent } from "./pages/auth/signup/signup.component";
 
 const routes: Routes = [
   { path: "", redirectTo: "/home", pathMatch: "full" },
-
-  {
-    path: "recipes",
-    component: RecipesComponent,
-    children: [
-      {
-        path: "",
-        component: RecipeStartComponent,
-        canActivate: [AuthguardService],
-      },
-      {
-        path: "new",
-        component: RecipeeditComponent,
-        canActivate: [AuthguardService],
-      },
-      {
-        path: ":id",
-        component: RecipeDetailComponent,
-        canActivate: [AuthguardService],
-      },
-      {
-        path: ":id/edit",
-        component: RecipeeditComponent,
-        canActivate: [AuthguardService],
-      },
-    ],
-  },
+  { path: "recipes", loadChildren: "./pages/recipes/recipes.module#RecipesModule" },
   {
     path: "shopping-list",
     component: ShoppingListComponent,
@@ -56,7 +30,10 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes,
+      // pre load lazy  loading routes
+      { preloadingStrategy: PreloadAllModules }
+  )],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
