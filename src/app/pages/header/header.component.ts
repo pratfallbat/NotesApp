@@ -1,12 +1,12 @@
 import { Component, OnInit, Output, EventEmitter } from "@angular/core";
 import { DataStorageService } from "../shared/data-storage.service";
 
-import { Http, Response } from "@angular/http";
-import { AuthService } from "src/app/services/auth.service";
 import { HttpEvent } from "@angular/common/http";
 import { Store } from '@ngrx/store';
 import * as fromApp from '../../store/app.reducer';
 import * as fromAuth from '../../services/store-auth/auth.reducer';
+// import * as fromApp from '../store/app.reducer';
+import * as AuthActions from '../../services/store-auth/auth.action';
 
 import { Observable } from 'rxjs';
 @Component({
@@ -22,7 +22,7 @@ authState: Observable<fromAuth.State>;
   onSelect(feature: string) {
     this.featureSelected.emit(feature);
   }
-  constructor(public data: DataStorageService, public auth: AuthService, private store: Store<fromApp.AppState>) {}
+  constructor(public data: DataStorageService, private store: Store<fromApp.AppState>) {}
   
   ngOnInit() {
      this.authState = this.store.select('auth');
@@ -38,6 +38,6 @@ authState: Observable<fromAuth.State>;
     this.data.getRecipes();
   }
   onLogOut() {
-    this.auth.logout();
+    this.store.dispatch(new AuthActions.Logout());
   }
 }

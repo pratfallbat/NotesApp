@@ -9,21 +9,14 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HeaderComponent } from "./pages/header/header.component";
 import { FooterComponent } from "./pages/footer/footer.component";
 import { SidebarComponent } from "./pages/sidebar/sidebar.component";
-import { RecipesComponent } from "./pages/recipes/recipes.component";
-import { RecipeListComponent } from "./pages/recipes/recipe-list/recipe-list.component";
-import { RecipeDetailComponent } from "./pages/recipes/recipe-detail/recipe-detail.component";
-import { RecipeItemComponent } from "./pages/recipes/recipe-list/recipe-item/recipe-item.component";
 import { ShoppingListComponent } from "./pages/shopping-list/shopping-list.component";
 import { ShoppingEditComponent } from "./pages/shopping-list/shopping-edit/shopping-edit.component";
 import { DropDownDirective } from "./pages/shared/dropdowndirective";
-import { ShoppingListService } from "./services/shopping-list.service";
-import { RecipeStartComponent } from "./pages/recipes/recipe-start/recipe-start.component";
-import { RecipeeditComponent } from "./pages/recipes/recipeedit/recipeedit.component";
+
 import { ExtraditComponent } from "./pages/extradit/extradit.component";
 import { RecipeServiceService } from "./services/recipe-service.service";
 import { SignupComponent } from "./pages/auth/signup/signup.component";
 import { SigninComponent } from "./pages/auth/signin/signin.component";
-import { AuthService } from "./services/auth.service";
 
 import { DataStorageService } from "./pages/shared/data-storage.service";
 import { HttpModule } from "@angular/http";
@@ -36,6 +29,12 @@ import { LoggingInterceptor } from "./pages/shared/response inteceptor/loggingIn
 import { StoreModule } from "@ngrx/store";
 
 import { reducers } from './store/app.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { AuthEffects } from './services/store-auth/auth.effect';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { StoreDevtools, StoreDevtoolsModule } from '@ngrx/store-devtools';
+import {environment} from './../environments/environment'
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -62,11 +61,14 @@ import { reducers } from './store/app.reducer';
     HttpModule,
     HttpClientModule,
     StoreModule.forRoot(reducers),
+    EffectsModule.forRoot([AuthEffects]),
+    StoreRouterConnectingModule.forRoot(),
+    !environment.production? StoreDevtoolsModule.instrument() : []
+
   ],
   providers: [
     DataStorageService,
     RecipeServiceService,
-    AuthService,
     AuthguardService,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: LoggingInterceptor, multi: true },
