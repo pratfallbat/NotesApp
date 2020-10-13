@@ -10,4 +10,4 @@ export interface AppState {
 export const reducers: ActionReducerMap<AppState> = {
     shoppingList: fromShoppingList.shopplingListReducer,
     auth: fromAuth.authReducer
-}
+} 

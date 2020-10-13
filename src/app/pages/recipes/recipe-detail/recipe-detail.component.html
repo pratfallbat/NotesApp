@@ -1,18 +1,20 @@
 <div class="row">
   <div class="col-xs-12">
-    <img src={{res.imagePath}} alt="recipeanmae"    class="img-responsive" style=" max-height: 300px;" >
+    <img 
+    src={{(recipeState|async).recipes[id].imagePath}}
+    alt="recipeanmae"    class="img-responsive" style=" max-height: 300px;" >
   </div>
 </div>
 <div class="row">
   <div class="col-xs-12">
-    <h1> {{res.name}}</h1>
+    <h1> {{ (recipeState | async).recipes[id].name }}</h1>
   </div>
 </div>
 <div class="row">
   <div class="col-xs-12">
     <!-- <div class="btn-group open ">   -->
       <!--  open is doing it now attach it usinjg directicve-->
-      <div class="btn-group " appDropDown>  
+      <div class="btn-group " appDropDown >  
  
       <button type="button" class="btn btn-primary dropdown-toggle">Manage Recipe <span class="caret"></span></button>
       <ul class="dropdown-menu">
@@ -26,7 +28,7 @@
 
 <div class="row">
   <div class="col-xs-12">
-    {{res.description}}
+    {{(recipeState | async).recipes[id].description}}
   </div>
 </div>
 <div class="row">
@@ -34,7 +36,7 @@
     <ul class="list-group">
       <li
         class="list-group-item"
-        *ngFor="let ingredient of res.ingredients">
+        *ngFor="let ingredient of (recipeState | async ).recipes[id].ingredients">
         {{ ingredient.name }} - {{ ingredient.amount }}
       </li>
     </ul>

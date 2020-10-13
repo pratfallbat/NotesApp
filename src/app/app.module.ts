@@ -11,7 +11,6 @@ import { FooterComponent } from "./pages/footer/footer.component";
 import { SidebarComponent } from "./pages/sidebar/sidebar.component";
 import { ShoppingListComponent } from "./pages/shopping-list/shopping-list.component";
 import { ShoppingEditComponent } from "./pages/shopping-list/shopping-edit/shopping-edit.component";
-import { DropDownDirective } from "./pages/shared/dropdowndirective";
 
 import { ExtraditComponent } from "./pages/extradit/extradit.component";
 import { RecipeServiceService } from "./services/recipe-service.service";
@@ -32,8 +31,9 @@ import { reducers } from './store/app.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { AuthEffects } from './services/store-auth/auth.effect';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
-import { StoreDevtools, StoreDevtoolsModule } from '@ngrx/store-devtools';
+import {  StoreDevtoolsModule } from '@ngrx/store-devtools';
 import {environment} from './../environments/environment'
+import { SharedmoduleModule } from './shared/sharedmodule/sharedmodule.module';
 
 @NgModule({
   declarations: [
@@ -45,7 +45,7 @@ import {environment} from './../environments/environment'
     SidebarComponent,
     ShoppingListComponent,
     ShoppingEditComponent,
-    DropDownDirective,
+    
     
      ExtraditComponent,
     SignupComponent,
@@ -54,6 +54,7 @@ import {environment} from './../environments/environment'
     SignupnewComponent,
   ],
   imports: [
+    SharedmoduleModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,
